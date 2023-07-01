@@ -5,29 +5,35 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import pages.HomePage;
 
 public class BaseTests {
 
     private WebDriver driver;
+    protected HomePage homePage;
 
-    public void setUp() throws InterruptedException {
+    @BeforeClass
+    public void setUp(){
         WebDriverManager.chromedriver().setup();
 //        System.setProperty("webdriver.chrome.driver","/Users/hatice/Desktop/chromedriver" );
         driver = new ChromeDriver();
         driver.get("https://the-internet.herokuapp.com/");
-        driver.manage().window().setPosition(new Point(0,-990));
 
-//        driver.manage().window().maximize();
-//        driver.manage().window().setSize(new Dimension(375,812));
+        homePage= new HomePage(driver);
 
-        System.out.println(driver.getTitle());
-        Thread.sleep(3000);
+
+
+
+    }
+
+    @AfterClass
+    public void tearDown(){
         driver.quit();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        BaseTests test = new BaseTests();
-        test.setUp();
-    }
+
+
 
 }
