@@ -65,6 +65,11 @@ public WysiwygEditorPage clickWysiwygEditor(){
         return new WysiwygEditorPage(driver);
 }
 
+public NestedFramesPage clickFrames(){
+        clickLink("Frames");
+        return new NestedFramesPage(driver);
+}
+
 
 
     private void clickLink(String linkText){
